@@ -1,0 +1,13 @@
+<mat-sidenav-container class="layout-container"
+                       [hasBackdrop]="false">
+    <mat-sidenav #drawer
+                 opened
+                 mode="side">Start content</mat-sidenav>
+    <mat-sidenav opened
+                 mode="side"
+                 position="end">End content</mat-sidenav>
+    <router-outlet></router-outlet>
+    <button mat-raised-button
+            (click)="drawer.toggle()">Toggle drawer</button>
+
+</mat-sidenav-container>
