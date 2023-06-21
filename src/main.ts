@@ -9,8 +9,10 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { APP_ROUTES } from './app/app-routing.module';
+import { APP_ROUTES } from './app/app-routing';
 import { AppComponent } from './app/app.component';
+import { StatisticsEffects } from './app/statistics/state/statistics.effects';
+import { statisticsReducer } from './app/statistics/state/statistics.reducer';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -29,8 +31,8 @@ bootstrapApplication(AppComponent, {
           deps: [HttpClient]
         }
       }),
-      StoreModule.forRoot({ router: routerReducer }),
-      EffectsModule.forRoot([]),
+      StoreModule.forRoot({ router: statisticsReducer }),
+      EffectsModule.forRoot([StatisticsEffects]),
       StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     ),
     provideRouter(
