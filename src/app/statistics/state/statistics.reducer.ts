@@ -1,11 +1,11 @@
 import { createReducer, on } from '@ngrx/store';
 import { StatisticsActions } from './statistics.actions';
 
-export interface State {
+export interface StatisticsState {
   error: string;
 }
 
-export const initialState: State = {
+export const initialState: StatisticsState = {
   error: '',
 };
 

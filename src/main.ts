@@ -9,8 +9,9 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { APP_ROUTES } from './app/app-routing';
-import { AppComponent } from './app/app.component';
+import { APP_ROUTES } from './app/main/app-routing';
+import { AppComponent } from './app/main/app.component';
+import { appReducer } from './app/main/state/app.reducer';
 import { StatisticsEffects } from './app/statistics/state/statistics.effects';
 import { statisticsReducer } from './app/statistics/state/statistics.reducer';
 
@@ -31,7 +32,7 @@ bootstrapApplication(AppComponent, {
           deps: [HttpClient]
         }
       }),
-      StoreModule.forRoot({ router: statisticsReducer }),
+      StoreModule.forRoot({ appReducer: appReducer, statistics: statisticsReducer }),
       EffectsModule.forRoot([StatisticsEffects]),
       StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     ),

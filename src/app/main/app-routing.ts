@@ -20,26 +20,26 @@ export const APP_ROUTES: Routes = [
       {
         path: 'statistics',
         loadComponent: () =>
-          import('./statistics/statistics.component')
+          import('../statistics/statistics.component')
             .then(mod => mod.StatisticsComponent)
 
       },
       {
         path: 'contacts',
         loadComponent: () =>
-          import('./contacts/contacts.component')
+          import('../contacts/contacts.component')
             .then(mod => mod.ContactsComponent)
       },
       {
         path: 'appointments',
         loadComponent: () =>
-          import('./appointments/appointments.component')
+          import('../appointments/appointments.component')
             .then(mod => mod.AppointmentsComponent)
       },
       {
         path: 'products',
         loadComponent: () =>
-          import('./products/products.component')
+          import('../products/products.component')
             .then(mod => mod.ProductsComponent)
       }
     ]
