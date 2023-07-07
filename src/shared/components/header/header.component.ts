@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppActions } from 'src/app/main/state/app.actions';
 import { selectToggleDrawer } from 'src/app/main/state/app.selectors';
@@ -12,15 +12,19 @@ import { selectToggleDrawer } from 'src/app/main/state/app.selectors';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
   standalone: true,
-  imports: [MatToolbarModule, MatIconModule, MatButtonModule]
+  imports: [
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule
+  ]
 })
 export class HeaderComponent implements OnInit {
-  toggleDrawer$ = new Observable();
+  toggleDrawer$ = new Observable<boolean | null>();
 
   constructor(private store: Store) { }
 
   ngOnInit(): void {
-    this.toggleDrawer$ = this.store.select(selectToggleDrawer);
+    this.toggleDrawer$ = this.store.pipe(select(selectToggleDrawer))
   }
 
   toggleHeader() {
