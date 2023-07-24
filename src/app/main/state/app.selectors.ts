@@ -1,9 +1,10 @@
-import { createSelector } from '@ngrx/store';
-import { AppState } from './app.reducer';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { EyescanState } from './app.reducer';
 
-export const selectAppState = (state: AppState) => state;
+export const selectEyescanState =
+  createFeatureSelector<EyescanState>('eyescan');
 
 export const selectToggleDrawer = createSelector(
-    selectAppState,
-    (state: AppState) => state.toggleDrawer
+  selectEyescanState,
+  (state: EyescanState) => state.toggleDrawer
 );

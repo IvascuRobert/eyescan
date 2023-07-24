@@ -1,23 +1,20 @@
 import { createReducer, on } from '@ngrx/store';
-import { AppActions } from './app.actions';
+import { EyescanActions } from './app.actions';
 
-export const appFeatureKey = 'app';
-
-export interface AppState {
+export interface EyescanState {
   toggleDrawer: boolean | null;
 }
 
-export const initialState: AppState = {
+export const initialState: EyescanState = {
   toggleDrawer: true,
 };
 
-export const appReducer = createReducer(
+export const eyescanReducer = createReducer(
   initialState,
-  on(AppActions.appToggleDrawer, (state) => {
+  on(EyescanActions.offcanvasToggleDrawer, (state) => {
     return {
       ...state,
-      toggleDrawer: !state.toggleDrawer
-    }
+      toggleDrawer: !state.toggleDrawer,
+    };
   })
 );
-

@@ -1,33 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { AppActions } from 'src/app/main/state/app.actions';
-import { selectToggleDrawer } from 'src/app/main/state/app.selectors';
+import { Store } from '@ngrx/store';
+import { EyescanActions } from 'src/app/main/state/app.actions';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
   standalone: true,
-  imports: [
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule
-  ]
+  imports: [CommonModule, MatToolbarModule, MatIconModule, MatButtonModule],
 })
-export class HeaderComponent implements OnInit {
-  toggleDrawer$ = new Observable<boolean | null>();
-
-  constructor(private store: Store) { }
-
-  ngOnInit(): void {
-    this.toggleDrawer$ = this.store.pipe(select(selectToggleDrawer))
-  }
+export class HeaderComponent {
+  constructor(private store: Store) {}
 
   toggleHeader() {
-    this.store.dispatch(AppActions.appToggleDrawer());
+    this.store.dispatch(EyescanActions.offcanvasToggleDrawer());
   }
 }

@@ -1,5 +1,9 @@
-
-import { HttpClient, HttpClientModule, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpClientModule,
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 import { importProvidersFrom, isDevMode } from '@angular/core';
 import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
@@ -11,7 +15,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { APP_ROUTES } from './app/main/app-routing';
 import { AppComponent } from './app/main/app.component';
-import { appReducer } from './app/main/state/app.reducer';
+import { eyescanReducer } from './app/main/state/app.reducer';
 import { StatisticsEffects } from './app/statistics/state/statistics.effects';
 import { statisticsReducer } from './app/statistics/state/statistics.reducer';
 
@@ -29,18 +33,18 @@ bootstrapApplication(AppComponent, {
         loader: {
           provide: TranslateLoader,
           useFactory: HttpLoaderFactory,
-          deps: [HttpClient]
-        }
+          deps: [HttpClient],
+        },
       }),
-      StoreModule.forRoot({ appReducer: appReducer, statistics: statisticsReducer }),
+      StoreModule.forRoot({
+        eyescan: eyescanReducer,
+        statistics: statisticsReducer,
+      }),
       EffectsModule.forRoot([StatisticsEffects]),
-      StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+      StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
     ),
-    provideRouter(
-      APP_ROUTES
-    ),
+    provideRouter(APP_ROUTES),
     provideHttpClient(withInterceptorsFromDi()),
-    provideAnimations()
-  ]
-})
-  .catch(err => console.error(err));
+    provideAnimations(),
+  ],
+}).catch((err) => console.error(err));

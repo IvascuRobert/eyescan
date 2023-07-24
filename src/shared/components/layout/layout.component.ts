@@ -1,11 +1,15 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTabsModule } from '@angular/material/tabs';
 import { RouterModule } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
+import { Store, select } from '@ngrx/store';
+import { EyescanActions } from 'src/app/main/state/app.actions';
+import { Observable } from 'rxjs';
+import { selectToggleDrawer } from 'src/app/main/state/app.selectors';
 
 @Component({
   selector: 'app-layout',
@@ -17,36 +21,43 @@ import { HeaderComponent } from '../header/header.component';
     MatIconModule,
     MatTabsModule,
     MatListModule,
-    HeaderComponent
+    HeaderComponent,
   ],
   templateUrl: './layout.component.html',
-  styleUrls: ['./layout.component.scss']
+  styleUrls: ['./layout.component.scss'],
 })
-export class LayoutComponent {
+export class LayoutComponent implements OnInit {
   links = [
     {
       isActive: false,
       name: 'appointments',
       route: '/appointments',
-      icon: 'info'
+      icon: 'info',
     },
     {
       isActive: true,
       name: 'contacts',
       route: '/contacts',
-      icon: 'info'
+      icon: 'info',
     },
     {
       isActive: false,
       name: 'products',
       route: '/products',
-      icon: 'info'
+      icon: 'info',
     },
     {
       isActive: true,
       name: 'statistics',
       route: '/statistics',
-      icon: 'info'
-    }
-  ]
+      icon: 'info',
+    },
+  ];
+  toggleDrawer$ = new Observable<boolean | null>();
+
+  constructor(private store: Store) {}
+
+  ngOnInit(): void {
+    this.toggleDrawer$ = this.store.pipe(select(selectToggleDrawer));
+  }
 }

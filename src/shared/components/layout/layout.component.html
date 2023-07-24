@@ -2,7 +2,7 @@
 <mat-sidenav-container class="layout-container"
                        [hasBackdrop]="false">
         <mat-sidenav #drawer
-                     opened
+                     [opened]="toggleDrawer$ | async"
                      mode="side">
 
                 <mat-nav-list>
@@ -27,8 +27,6 @@
         </mat-sidenav>
         <router-outlet></router-outlet>
         <button mat-raised-button
-                (click)="drawer.toggle()">Toggle drawer</button>
-        <button mat-raised-button
-                [routerLink]="['/contacts']">Toggle drawer</button>
+                [routerLink]="['/contacts']">Router to contacts</button>
 
 </mat-sidenav-container>
