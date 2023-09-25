@@ -1,1 +1,313 @@
-<p>contacts works!</p>
+<div class="container-fluid mt-2">
+  <div class="row">
+    <div class="col-12">
+      <button
+        mat-fab
+        class="my-4"
+        matTooltip="Add a new client"
+        (click)="addContact()"
+      >
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+    <div class="col-12">
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title> Search client </mat-panel-title>
+            <mat-panel-description
+              class="justify-content-between align-items-center"
+            >
+              {{ searchType ? "Advanced search" : "Simple search" }} client
+              based on needs
+              <mat-icon>filter_list</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <form [formGroup]="searchClientForm" (ngSubmit)="searchClients()">
+            <div class="row">
+              <div class="col-12">
+                <mat-slide-toggle class="mb-3" formControlName="searchType">
+                  {{ searchType.value ? "Advanced search" : "Simple search" }}
+                </mat-slide-toggle>
+              </div>
+              <ng-container *ngIf="!searchType.value">
+                <div class="col">
+                  <mat-form-field>
+                    <mat-label>Id</mat-label>
+                    <input matInput />
+                  </mat-form-field>
+                </div>
+                <div class="col">
+                  <mat-form-field>
+                    <mat-label>First name</mat-label>
+                    <input matInput />
+                  </mat-form-field>
+                </div>
+                <div class="col">
+                  <mat-form-field>
+                    <mat-label>Last name</mat-label>
+                    <input matInput />
+                  </mat-form-field>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="searchType.value">
+                <div class="col">
+                  <mat-form-field>
+                    <mat-label>Id</mat-label>
+                    <input matInput />
+                  </mat-form-field>
+                </div>
+                <div class="col">
+                  <mat-form-field>
+                    <mat-label>First name</mat-label>
+                    <input matInput />
+                  </mat-form-field>
+                </div>
+                <div class="col">
+                  <mat-form-field>
+                    <mat-label>Age</mat-label>
+                    <input matInput type="number" min="1" />
+                  </mat-form-field>
+                </div>
+                <div class="col">
+                  <mat-form-field>
+                    <mat-label>Age</mat-label>
+                    <input matInput type="number" min="1" />
+                  </mat-form-field>
+                </div>
+                <div class="col">
+                  <mat-form-field>
+                    <mat-label>Age</mat-label>
+                    <input matInput type="number" min="1" />
+                  </mat-form-field>
+                </div>
+                <div class="col">
+                  <mat-form-field>
+                    <mat-label>Age</mat-label>
+                    <input matInput type="number" min="1" />
+                  </mat-form-field>
+                </div>
+                <div class="col">
+                  <mat-form-field>
+                    <mat-label>Age</mat-label>
+                    <input matInput type="number" min="1" />
+                  </mat-form-field>
+                </div>
+                <div class="col">
+                  <mat-form-field>
+                    <mat-label>Age</mat-label>
+                    <input matInput type="number" min="1" />
+                  </mat-form-field>
+                </div>
+                <div class="col">
+                  <mat-form-field>
+                    <mat-label>Age</mat-label>
+                    <input matInput type="number" min="1" />
+                  </mat-form-field>
+                </div>
+                <div class="col">
+                  <mat-form-field>
+                    <mat-label>Age</mat-label>
+                    <input matInput type="number" min="1" />
+                  </mat-form-field>
+                </div>
+                <div class="col">
+                  <mat-form-field>
+                    <mat-label>Age</mat-label>
+                    <input matInput type="number" min="1" />
+                  </mat-form-field>
+                </div>
+                <div class="col">
+                  <mat-form-field>
+                    <mat-label>Age</mat-label>
+                    <input matInput type="number" min="1" />
+                  </mat-form-field>
+                </div>
+                <div class="col">
+                  <mat-form-field>
+                    <mat-label>Age</mat-label>
+                    <input matInput type="number" min="1" />
+                  </mat-form-field>
+                </div>
+                <div class="col">
+                  <mat-form-field>
+                    <mat-label>Age</mat-label>
+                    <input matInput type="number" min="1" />
+                  </mat-form-field>
+                </div>
+                <div class="col">
+                  <mat-form-field>
+                    <mat-label>Age</mat-label>
+                    <input matInput type="number" min="1" />
+                  </mat-form-field>
+                </div>
+                <div class="col">
+                  <mat-form-field>
+                    <mat-label>Age</mat-label>
+                    <input matInput type="number" min="1" />
+                  </mat-form-field>
+                </div>
+              </ng-container>
+            </div>
+            <mat-action-row>
+              <button type="submit" mat-button color="primary">
+                Search <mat-icon>search</mat-icon>
+              </button>
+            </mat-action-row>
+          </form>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    <div class="col-12">
+      <div class="mat-elevation-z8 mt-4">
+        <mat-table [dataSource]="clients">
+          <ng-container matColumnDef="id">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>
+              id
+            </mat-header-cell>
+            <mat-cell mat-cell *matCellDef="let element">
+              {{ element.id }}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="firstName">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>
+              firstName
+            </mat-header-cell>
+            <mat-cell mat-cell *matCellDef="let element">
+              {{ element.firstName }}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="lastName">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>
+              lastName
+            </mat-header-cell>
+            <mat-cell mat-cell *matCellDef="let element">
+              {{ element.lastName }}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="email">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>
+              email
+            </mat-header-cell>
+            <mat-cell mat-cell *matCellDef="let element">
+              {{ element.email }}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="taxCode">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>
+              taxCode
+            </mat-header-cell>
+            <mat-cell mat-cell *matCellDef="let element">
+              {{ element.taxCode }}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="address">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>
+              address
+            </mat-header-cell>
+            <mat-cell mat-cell *matCellDef="let element">
+              <div
+                class="d-inline-block text-truncate"
+                style="max-width: 150px"
+              >
+                {{ element.address }}
+              </div>
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="phoneNumber">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>
+              phoneNumber
+            </mat-header-cell>
+            <mat-cell mat-cell *matCellDef="let element">
+              {{ element.phoneNumber }}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="birthDate">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>
+              birthDate
+            </mat-header-cell>
+            <mat-cell mat-cell *matCellDef="let element">
+              {{ element.birthDate | date }}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="lastAppointmentDate">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>
+              lastAppointmentDate
+            </mat-header-cell>
+            <mat-cell mat-cell *matCellDef="let element">
+              {{ element.lastAppointmentDate | date }}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="lastBoughtDeviceDate">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>
+              lastBoughtDeviceDate
+            </mat-header-cell>
+            <mat-cell mat-cell *matCellDef="let element">
+              {{ element.lastBoughtDeviceDate | date }}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="typeOfReservation">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>
+              typeOfReservation
+            </mat-header-cell>
+            <mat-cell mat-cell *matCellDef="let element">
+              {{ element.typeOfReservation }}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="typeOfClient">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>
+              typeOfClient
+            </mat-header-cell>
+            <mat-cell mat-cell *matCellDef="let element">
+              {{ element.typeOfClient }}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="favoriteShop">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>
+              favoriteShop
+            </mat-header-cell>
+            <mat-cell mat-cell *matCellDef="let element">
+              {{ element.favoriteShop }}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="deviceQuality">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>
+              deviceQuality
+            </mat-header-cell>
+            <mat-cell mat-cell *matCellDef="let element">
+              {{ element.deviceQuality }}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="deviceSerialNumber">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>
+              deviceSerialNumber
+            </mat-header-cell>
+            <mat-cell mat-cell *matCellDef="let element">
+              {{ element.deviceSerialNumber }}
+            </mat-cell>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row
+            *matRowDef="let row; columns: displayedColumns"
+            matRipple
+            [routerLink]="[row.id]"
+          ></mat-row>
+        </mat-table>
+
+        <mat-paginator
+          [pageSizeOptions]="[5, 10, 20]"
+          showFirstLastButtons
+          aria-label="Select page of periodic elements"
+        >
+        </mat-paginator>
+      </div>
+    </div>
+  </div>
+</div>

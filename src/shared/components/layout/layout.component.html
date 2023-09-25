@@ -1,32 +1,20 @@
 <app-header></app-header>
-<mat-sidenav-container class="layout-container"
-                       [hasBackdrop]="false">
-        <mat-sidenav #drawer
-                     [opened]="toggleDrawer$ | async"
-                     mode="side">
-
-                <mat-nav-list>
-                        <mat-list-item *ngFor="let link of links"
-                                       [activated]="link.isActive"
-                                       [routerLink]="[link.route]">
-                                <a matListItemTitle
-                                   routerLinkActive="router-link-active">
-                                        {{ link.name }}
-                                </a>
-                                <button mat-icon-button
-                                        matListItemMeta>
-                                        <mat-icon>info</mat-icon>
-                                </button>
-                        </mat-list-item>
-                </mat-nav-list>
-        </mat-sidenav>
-        <mat-sidenav opened
-                     mode="side"
-                     position="end">
-                End content
-        </mat-sidenav>
-        <router-outlet></router-outlet>
-        <button mat-raised-button
-                [routerLink]="['/contacts']">Router to contacts</button>
-
+<mat-sidenav-container class="layout-container" [hasBackdrop]="false">
+  <mat-sidenav #drawer [opened]="toggleDrawer$ | async" mode="side">
+    <mat-nav-list>
+      <mat-list-item
+        *ngFor="let link of links"
+        [activated]="link.isActive"
+        [routerLink]="[link.route]"
+      >
+        <a matListItemTitle routerLinkActive="router-link-active">
+          {{ link.name }}
+        </a>
+        <button mat-icon-button matListItemMeta>
+          <mat-icon>info</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+  <router-outlet></router-outlet>
 </mat-sidenav-container>

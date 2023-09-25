@@ -6,7 +6,7 @@ export const APP_ROUTES: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'contacts'
+    redirectTo: 'contacts',
   },
   // not found page
   // {
@@ -20,28 +20,38 @@ export const APP_ROUTES: Routes = [
       {
         path: 'statistics',
         loadComponent: () =>
-          import('../statistics/statistics.component')
-            .then(mod => mod.StatisticsComponent)
-
+          import('../statistics/statistics.component').then(
+            (mod) => mod.StatisticsComponent
+          ),
       },
       {
         path: 'contacts',
         loadComponent: () =>
-          import('../contacts/contacts.component')
-            .then(mod => mod.ContactsComponent)
+          import('../contacts/contacts.component').then(
+            (mod) => mod.ContactsComponent
+          ),
+      },
+      {
+        path: 'contacts/:id',
+        loadComponent: () =>
+          import('../contacts/details-contact/details-contact.component').then(
+            (mod) => mod.DetailsContactComponent
+          ),
       },
       {
         path: 'appointments',
         loadComponent: () =>
-          import('../appointments/appointments.component')
-            .then(mod => mod.AppointmentsComponent)
+          import('../appointments/appointments.component').then(
+            (mod) => mod.AppointmentsComponent
+          ),
       },
       {
         path: 'products',
         loadComponent: () =>
-          import('../products/products.component')
-            .then(mod => mod.ProductsComponent)
-      }
-    ]
-  }
+          import('../products/products.component').then(
+            (mod) => mod.ProductsComponent
+          ),
+      },
+    ],
+  },
 ];

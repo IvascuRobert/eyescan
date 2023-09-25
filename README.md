@@ -1,4 +1,7 @@
-# Eyescan
+
+## Serv
+
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).# Eyescan
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.0.
 
