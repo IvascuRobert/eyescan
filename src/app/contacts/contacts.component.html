@@ -23,7 +23,7 @@
               <mat-icon>filter_list</mat-icon>
             </mat-panel-description>
           </mat-expansion-panel-header>
-          <form [formGroup]="searchClientForm" (ngSubmit)="searchClients()">
+          <form [formGroup]="searchContactForm" (ngSubmit)="searchContacts()">
             <div class="row">
               <div class="col-12">
                 <mat-slide-toggle class="mb-3" formControlName="searchType">
@@ -160,7 +160,7 @@
     </div>
     <div class="col-12">
       <div class="mat-elevation-z8 mt-4">
-        <mat-table [dataSource]="clients">
+        <mat-table [dataSource]="contacts">
           <ng-container matColumnDef="id">
             <mat-header-cell mat-header-cell *matHeaderCellDef>
               id

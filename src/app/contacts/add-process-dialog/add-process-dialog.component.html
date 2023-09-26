@@ -1,0 +1,43 @@
+<form [formGroup]="processForm" (ngSubmit)="addProcess()">
+  <h2 mat-dialog-title>Screening</h2>
+  <mat-dialog-content class="mat-typography">
+    <div class="row">
+      <div class="col-12">
+        <mat-form-field>
+          <mat-label>leftEar</mat-label>
+          <input matInput formControlName="leftEar" />
+        </mat-form-field>
+      </div>
+      <div class="col-12">
+        <mat-form-field>
+          <mat-label>rightEar</mat-label>
+          <input matInput formControlName="rightEar" />
+        </mat-form-field>
+      </div>
+      <div class="col-12">
+        <mat-form-field>
+          <mat-label>questionnaire</mat-label>
+          <input matInput formControlName="questionnaire" />
+        </mat-form-field>
+      </div>
+      <div class="col-12">
+        <mat-form-field>
+          <mat-label>device</mat-label>
+          <input matInput formControlName="device" />
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button type="button" mat-button mat-dialog-close>Cancel</button>
+    <button
+      type="submit"
+      mat-raised-button
+      [mat-dialog-close]="true"
+      cdkFocusInitial
+      [color]="processForm.valid ? 'primary' : ''"
+    >
+      Add
+    </button>
+  </mat-dialog-actions>
+</form>

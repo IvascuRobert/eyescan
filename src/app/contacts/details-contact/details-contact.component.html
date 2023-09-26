@@ -1,5 +1,152 @@
 <div class="container-fluid mt-2">
   <div class="row">
-    {{ contact | json }}
+    <div class="col-6">
+      <mat-list>
+        <div mat-subheader>Contact details</div>
+        <mat-list-item>
+          <mat-icon matListItemIcon>chevron_right</mat-icon>
+          <div matListItemTitle>{{ contact.firstName }}</div>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon matListItemIcon>chevron_right</mat-icon>
+          <div matListItemTitle>{{ contact.lastName }}</div>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon matListItemIcon>chevron_right</mat-icon>
+          <div matListItemTitle>{{ contact.email }}</div>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon matListItemIcon>chevron_right</mat-icon>
+          <div matListItemTitle>{{ contact.address }}</div>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon matListItemIcon>chevron_right</mat-icon>
+          <div matListItemTitle>{{ contact.firstName }}</div>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon matListItemIcon>chevron_right</mat-icon>
+          <div matListItemTitle>{{ contact.taxCode }}</div>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon matListItemIcon>chevron_right</mat-icon>
+          <div matListItemTitle>{{ contact.birthDate | date }}</div>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon matListItemIcon>chevron_right</mat-icon>
+          <div matListItemTitle>{{ contact.privacy }}</div>
+        </mat-list-item>
+      </mat-list>
+    </div>
+
+    <div class="col-6">
+      <div mat-subheader>Audiograma</div>
+      <div class="row">
+        <div class="col-6 p-5 bg-primary text-white"></div>
+        <div class="col-6 p-5 bg-danger text-white"></div>
+        <div class="col-12 p-5 bg-warning text-white"></div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+        (click)="startProcess()"
+      >
+        Start process <mat-icon>search</mat-icon>
+      </button>
+    </div>
+
+    <div class="col-12">
+      <div class="mat-elevation-z8 mt-4">
+        <mat-table [dataSource]="contact.process || []">
+          <ng-container matColumnDef="createdDate">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>
+              createdDate
+            </mat-header-cell>
+            <mat-cell mat-cell *matCellDef="let element">
+              {{ element.createdDate | date }}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="leftEar">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>
+              leftEar
+            </mat-header-cell>
+            <mat-cell mat-cell *matCellDef="let element">
+              {{ element.leftEar }}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="rightEar">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>
+              rightEar
+            </mat-header-cell>
+            <mat-cell mat-cell *matCellDef="let element">
+              {{ element.rightEar }}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="questionnaire">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>
+              questionnaire
+            </mat-header-cell>
+            <mat-cell mat-cell *matCellDef="let element">
+              {{ element.questionnaire }}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="device">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>
+              device
+            </mat-header-cell>
+            <mat-cell mat-cell *matCellDef="let element">
+              {{ element.device }}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="isFinished">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>
+              isFinished
+            </mat-header-cell>
+            <mat-cell mat-cell *matCellDef="let element">
+              {{ element.isFinished }}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="actions">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>
+            </mat-header-cell>
+            <mat-cell mat-cell *matCellDef="let element">
+              <button
+                mat-icon-button
+                [matMenuTriggerFor]="menu"
+                aria-label="Example icon-button with a menu"
+              >
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item>
+                  <mat-icon>dialpad</mat-icon>
+                  <span>Redial</span>
+                </button>
+                <button mat-menu-item disabled>
+                  <mat-icon>voicemail</mat-icon>
+                  <span>Check voice mail</span>
+                </button>
+                <button mat-menu-item>
+                  <mat-icon>notifications_off</mat-icon>
+                  <span>Disable alerts</span>
+                </button>
+              </mat-menu>
+            </mat-cell>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+        </mat-table>
+
+        <mat-paginator
+          [pageSizeOptions]="[5, 10, 20]"
+          showFirstLastButtons
+          aria-label="Select page of periodic elements"
+        >
+        </mat-paginator>
+      </div>
+    </div>
   </div>
 </div>

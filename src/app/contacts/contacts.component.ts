@@ -53,7 +53,7 @@ import { DeviceQuality } from 'src/shared/enum/device-quality.enum';
   ],
 })
 export class ContactsComponent {
-  searchClientForm = this.fb.group({
+  searchContactForm = this.fb.group({
     id: [],
     firstName: [''],
     lastName: [''],
@@ -78,7 +78,7 @@ export class ContactsComponent {
     searchType: [false], // simple, advanced
   });
 
-  clients = new MatTableDataSource<Contact>([
+  contacts = new MatTableDataSource<Contact>([
     {
       id: 1,
       firstName: 'Ivascu',
@@ -138,7 +138,7 @@ export class ContactsComponent {
   ];
 
   get searchType() {
-    return this.searchClientForm.get('searchType') as FormControl<boolean>;
+    return this.searchContactForm.get('searchType') as FormControl<boolean>;
   }
 
   constructor(public dialog: MatDialog, private fb: FormBuilder) {}
@@ -153,11 +153,11 @@ export class ContactsComponent {
     });
   }
 
-  searchClients(): void {
-    console.log(this.searchClientForm.getRawValue());
+  searchContacts(): void {
+    console.log(this.searchContactForm.getRawValue());
   }
 
   private addContactInTable(client: any) {
-    this.clients.data = [...this.clients.data, client];
+    this.contacts.data = [...this.contacts.data, client];
   }
 }

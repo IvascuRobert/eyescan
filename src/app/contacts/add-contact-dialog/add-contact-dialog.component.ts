@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Inject } from '@angular/core';
 import {
-  FormBuilder,
   FormsModule,
   NonNullableFormBuilder,
   ReactiveFormsModule,
@@ -23,7 +22,6 @@ import { DeviceQuality } from 'src/shared/enum/device-quality.enum';
 import { TypeOfClient } from 'src/shared/enum/type-of-client.enum';
 import { TypeOfReservation } from 'src/shared/enum/type-of-reservation.enum';
 import { Contact } from 'src/shared/interface/contact';
-import { ControlsOf } from 'src/shared/utils/utils';
 
 @Component({
   selector: 'app-add-contact-dialog',
