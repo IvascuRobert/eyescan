@@ -1,4 +1,7 @@
 export enum ProcessStatus {
-  SCREENING = 'SCREENING',
-  OPPORTUNITY = 'OPPORTUNITY'
+  OPEN = 'OPEN',
+  END = 'END',
+  TRIAL = 'TRIAL',
+  WIN = 'WIN',
+  LOST = 'LOST',
 }

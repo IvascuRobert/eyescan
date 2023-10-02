@@ -1,8 +1,8 @@
 import { DeviceQuality } from '../enum/device-quality.enum';
-import { ProcessStatus } from '../enum/process-status.enum';
 import { TypeOfClient } from '../enum/type-of-client.enum';
 import { TypeOfReservation } from '../enum/type-of-reservation.enum';
 import { AudiogramExams } from './audiogram-exams';
+import { Process } from './process';
 
 export interface Contact {
   id: number;
@@ -28,16 +28,5 @@ export interface Contact {
   privacy: boolean;
 
   audiogramExams?: AudiogramExams;
-  process?: [
-    {
-      createdDate?: Date;
-      leftEar?: number;
-      rightEar?: number;
-      questionnaire?: number;
-      device?: any;
-      isFinished?: boolean
-    }
-  ];
-
-
+  process?: Process[];
 }

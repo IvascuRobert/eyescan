@@ -77,12 +77,28 @@
               {{ element.leftEar }}
             </mat-cell>
           </ng-container>
+          <ng-container matColumnDef="deviceLeftEar">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>
+              deviceLeftEar
+            </mat-header-cell>
+            <mat-cell mat-cell *matCellDef="let element">
+              {{ element.deviceLeftEar }}
+            </mat-cell>
+          </ng-container>
           <ng-container matColumnDef="rightEar">
             <mat-header-cell mat-header-cell *matHeaderCellDef>
               rightEar
             </mat-header-cell>
             <mat-cell mat-cell *matCellDef="let element">
               {{ element.rightEar }}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="deviceRightEar">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>
+              deviceRightEar
+            </mat-header-cell>
+            <mat-cell mat-cell *matCellDef="let element">
+              {{ element.deviceRightEar }}
             </mat-cell>
           </ng-container>
           <ng-container matColumnDef="questionnaire">
@@ -93,20 +109,12 @@
               {{ element.questionnaire }}
             </mat-cell>
           </ng-container>
-          <ng-container matColumnDef="device">
+          <ng-container matColumnDef="status">
             <mat-header-cell mat-header-cell *matHeaderCellDef>
-              device
+              status
             </mat-header-cell>
             <mat-cell mat-cell *matCellDef="let element">
-              {{ element.device }}
-            </mat-cell>
-          </ng-container>
-          <ng-container matColumnDef="isFinished">
-            <mat-header-cell mat-header-cell *matHeaderCellDef>
-              isFinished
-            </mat-header-cell>
-            <mat-cell mat-cell *matCellDef="let element">
-              {{ element.isFinished }}
+              {{ element.status }}
             </mat-cell>
           </ng-container>
           <ng-container matColumnDef="actions">
@@ -121,17 +129,9 @@
                 <mat-icon>more_vert</mat-icon>
               </button>
               <mat-menu #menu="matMenu">
-                <button mat-menu-item>
-                  <mat-icon>dialpad</mat-icon>
-                  <span>Redial</span>
-                </button>
-                <button mat-menu-item disabled>
-                  <mat-icon>voicemail</mat-icon>
-                  <span>Check voice mail</span>
-                </button>
-                <button mat-menu-item>
-                  <mat-icon>notifications_off</mat-icon>
-                  <span>Disable alerts</span>
+                <button *ngFor="let action of actions" mat-menu-item>
+                  <mat-icon>{{ action.icon }}</mat-icon>
+                  <span>{{ action.name }}</span>
                 </button>
               </mat-menu>
             </mat-cell>

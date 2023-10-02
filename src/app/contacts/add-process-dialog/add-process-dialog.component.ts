@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, Inject } from '@angular/core';
 import {
-  FormBuilder,
   FormsModule,
+  NonNullableFormBuilder,
   ReactiveFormsModule,
-  Validators,
+  Validators
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -17,8 +17,8 @@ import {
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { ProcessStatus } from 'src/shared/enum/process-status.enum';
 
 @Component({
   selector: 'app-add-process-dialog',
@@ -36,24 +36,33 @@ import { ProcessStatus } from 'src/shared/enum/process-status.enum';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatSelectModule,
   ],
   templateUrl: './add-process-dialog.component.html',
   styleUrls: ['./add-process-dialog.component.scss'],
 })
 export class AddProcessDialogComponent {
   processForm = this.fb.group({
-    leftEar: ['', Validators.required],
-    rightEar: ['', Validators.required],
-    questionnaire: ['', Validators.required],
-    device: [{ value: '', disabled: true }, Validators.required],
-    isFinished: [false],
+    leftEar: [0, Validators.required],
+    rightEar: [0, Validators.required],
+    questionnaire: [0, Validators.required],
+    deviceLeftEar: ['', Validators.required],
+    deviceRightEar: ['', Validators.required],
   });
 
+  devices = [
+    { value: 'device-0', viewValue: 'No device' },
+    { value: 'device-1', viewValue: 'Has device in last 3 years' },
+    { value: 'device-2', viewValue: 'Has device more than 3 years' },
+  ];
+
   constructor(
-    private fb: FormBuilder,
+    private fb: NonNullableFormBuilder,
     public dialogRef: MatDialogRef<AddProcessDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
+
+  ngOnInit(): void {}
 
   addProcess(): void {
     if (this.processForm.valid) {
