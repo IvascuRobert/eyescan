@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -9,15 +9,15 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatStepperModule } from '@angular/material/stepper';
 import { MatTableModule } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { DeviceQuality } from 'src/shared/enum/device-quality.enum';
+import { ProcessStatus } from 'src/shared/enum/process-status.enum';
 import { TypeOfClient } from 'src/shared/enum/type-of-client.enum';
 import { TypeOfReservation } from 'src/shared/enum/type-of-reservation.enum';
 import { Contact } from 'src/shared/interface/contact';
 import { AddProcessDialogComponent } from '../add-process-dialog/add-process-dialog.component';
-import { ProcessStatus } from 'src/shared/enum/process-status.enum';
+import { EndProcessDialogComponent } from '../end-process-dialog/end-process-dialog.component';
 
 @Component({
   selector: 'app-details-contact',
@@ -26,7 +26,6 @@ import { ProcessStatus } from 'src/shared/enum/process-status.enum';
     CommonModule,
     MatListModule,
     MatIconModule,
-    MatStepperModule,
     MatFormFieldModule,
     FormsModule,
     ReactiveFormsModule,
@@ -70,14 +69,20 @@ export class DetailsContactComponent {
     'deviceLeftEar',
     'deviceRightEar',
     'status',
+    'reason',
+    'note',
     'actions',
   ];
 
   actions = [
-    { name: 'Go to order page', icon: 'dialpad' },
-    { name: 'Force end process', icon: 'dialpad' },
-    { name: 'Update', icon: 'dialpad' },
-    { name: 'Remove', icon: 'dialpad' },
+    { name: 'Opportunity', icon: 'dialpad' },
+    {
+      name: 'Force end process',
+      icon: 'dialpad',
+      action: 'END_PROCESS_DIALOG',
+    },
+    { name: 'Edit', icon: 'dialpad' },
+    { name: 'Delete', icon: 'dialpad' },
   ];
 
   constructor(
@@ -90,7 +95,7 @@ export class DetailsContactComponent {
     });
   }
 
-  startProcess() {
+  startProcess(): void {
     const dialogRef = this.dialog.open(AddProcessDialogComponent);
 
     dialogRef
@@ -124,5 +129,30 @@ export class DetailsContactComponent {
           };
         }
       );
+  }
+
+  triggerAction(action: string | undefined): void {
+    switch (action) {
+      case 'END_PROCESS_DIALOG':
+        this.endProcess();
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  addNote(): void {}
+
+  private endProcess(): void {
+    const dialogRef = this.dialog.open(EndProcessDialogComponent);
+
+    dialogRef.afterClosed().subscribe(({ reason, note }: any) => {
+      if (this.contact.process) {
+        this.contact.process[0].reason = reason;
+        this.contact.process[0].note = note;
+        this.contact.process[0].status = ProcessStatus.LOST;
+      }
+    });
   }
 }

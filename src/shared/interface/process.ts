@@ -5,4 +5,6 @@ export interface Process {
   questionnaire?: number;
   device?: any;
   status: 'OPEN' | 'END' | 'TRIAL' | 'WIN' | 'LOST';
+  reason?: string;
+  note?: string;
 }
