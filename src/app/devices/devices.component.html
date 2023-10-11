@@ -1,0 +1,174 @@
+<div class="container-fluid mt-2">
+  <div class="row">
+    <div class="col-12">
+      <button
+        mat-fab
+        class="my-4"
+        matTooltip="Add a new device"
+        (click)="addDeviceOrAccessories()"
+      >
+        <mat-icon>add</mat-icon>
+      </button>
+      <button
+        mat-fab
+        class="my-4"
+        matTooltip="Add a new accessories"
+        (click)="addDeviceOrAccessories()"
+      >
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+
+    <div>DE FACUT SEARCH</div>
+
+    <div class="col-12">
+      <div class="mat-elevation-z8 mt-4">
+        <mat-table [dataSource]="devicesAndAccessories">
+          <ng-container matColumnDef="id">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>
+              id
+            </mat-header-cell>
+            <mat-cell mat-cell *matCellDef="let element">
+              {{ element.id }}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="name">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>
+              name
+            </mat-header-cell>
+            <mat-cell mat-cell *matCellDef="let element">
+              {{ element.name }}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="brand">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>
+              brand
+            </mat-header-cell>
+            <mat-cell mat-cell *matCellDef="let element">
+              {{ element.brand }}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="serialNumber">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>
+              serialNumber
+            </mat-header-cell>
+            <mat-cell mat-cell *matCellDef="let element">
+              {{ element.serialNumber }}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="aslGroup">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>
+              aslGroup
+            </mat-header-cell>
+            <mat-cell mat-cell *matCellDef="let element">
+              {{ element.aslGroup }}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="battery">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>
+              battery
+            </mat-header-cell>
+            <mat-cell mat-cell *matCellDef="let element">
+              {{ element.battery }}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="client">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>
+              client
+            </mat-header-cell>
+            <mat-cell mat-cell *matCellDef="let element">
+              {{ element.client }}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="color">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>
+              color
+            </mat-header-cell>
+            <mat-cell mat-cell *matCellDef="let element">
+              {{ element.color }}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="createdDate">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>
+              createdDate
+            </mat-header-cell>
+            <mat-cell mat-cell *matCellDef="let element">
+              {{ element.createdDate | date }}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="location">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>
+              location
+            </mat-header-cell>
+            <mat-cell mat-cell *matCellDef="let element">
+              {{ element.location }}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="number">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>
+              number
+            </mat-header-cell>
+            <mat-cell mat-cell *matCellDef="let element">
+              {{ element.number }}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="price">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>
+              price
+            </mat-header-cell>
+            <mat-cell mat-cell *matCellDef="let element">
+              {{ element.price }}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="qualityLevel">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>
+              qualityLevel
+            </mat-header-cell>
+            <mat-cell mat-cell *matCellDef="let element">
+              {{ element.qualityLevel }}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="status">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>
+              status
+            </mat-header-cell>
+            <mat-cell mat-cell *matCellDef="let element">
+              {{ element.status }}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="actions">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>
+            </mat-header-cell>
+            <mat-cell mat-cell *matCellDef="let element">
+              <button
+                mat-icon-button
+                [matMenuTriggerFor]="menu"
+                aria-label="Example icon-button with a menu"
+              >
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button *ngFor="let action of actions" mat-menu-item>
+                  <mat-icon>{{ action.icon }}</mat-icon>
+                  <span>{{ action.name }}</span>
+                </button>
+              </mat-menu>
+            </mat-cell>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row
+            *matRowDef="let row; columns: displayedColumns"
+            matRipple
+          ></mat-row>
+        </mat-table>
+
+        <mat-paginator
+          [pageSizeOptions]="[5, 10, 20]"
+          showFirstLastButtons
+          aria-label="Select page of periodic elements"
+        >
+        </mat-paginator>
+      </div>
+    </div>
+  </div>
+</div>

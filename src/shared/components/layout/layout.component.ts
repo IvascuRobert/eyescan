@@ -42,8 +42,8 @@ export class LayoutComponent implements OnInit {
     },
     {
       isActive: false,
-      name: 'products',
-      route: '/products',
+      name: 'devices',
+      route: '/devices',
       icon: 'info',
     },
     {

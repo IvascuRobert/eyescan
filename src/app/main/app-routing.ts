@@ -46,10 +46,10 @@ export const APP_ROUTES: Routes = [
           ),
       },
       {
-        path: 'products',
+        path: 'devices',
         loadComponent: () =>
-          import('../products/products.component').then(
-            (mod) => mod.ProductsComponent
+          import('../devices/devices.component').then(
+            (mod) => mod.DevicesComponent
           ),
       },
     ],

@@ -157,7 +157,7 @@ export class ContactsComponent {
     console.log(this.searchContactForm.getRawValue());
   }
 
-  private addContactInTable(client: any) {
+  private addContactInTable(client: any): void {
     this.contacts.data = [...this.contacts.data, client];
   }
 }

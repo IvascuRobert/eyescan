@@ -1,0 +1,125 @@
+<form [formGroup]="addDevicesForm" (ngSubmit)="addDevice()">
+  <h2 mat-dialog-title>Add device</h2>
+  <mat-dialog-content class="mat-typography">
+    <div class="row">
+      <div class="col-6">
+        <mat-form-field>
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name" />
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field>
+          <mat-label>Serial number</mat-label>
+          <input matInput formControlName="serialNumber" />
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field>
+          <mat-label>Brand</mat-label>
+          <mat-select formControlName="brand" name="brand">
+            <mat-option *ngFor="let brand of brands" [value]="brand.value">
+              {{ brand.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field>
+          <mat-label>Type</mat-label>
+          <mat-select formControlName="type" name="type">
+            <mat-option *ngFor="let type of types" [value]="type.value">
+              {{ type.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field>
+          <mat-label>Battery</mat-label>
+          <mat-select formControlName="battery" name="battery">
+            <mat-option
+              *ngFor="let battery of batteries"
+              [value]="battery.value"
+            >
+              {{ battery.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field>
+          <mat-label>Quality</mat-label>
+          <mat-select formControlName="qualityLevel" name="qualityLevel">
+            <mat-option
+              *ngFor="let qualityLevel of qualityLevels"
+              [value]="qualityLevel.value"
+            >
+              {{ qualityLevel.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field>
+          <mat-label>Color</mat-label>
+          <input matInput formControlName="color" />
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field>
+          <mat-label>aslGroup</mat-label>
+          <mat-select formControlName="aslGroup" name="aslGroup">
+            <mat-option
+              *ngFor="let aslGroup of aslGroups"
+              [value]="aslGroup.value"
+            >
+              {{ aslGroup.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field>
+          <mat-label>Price</mat-label>
+          <input matInput type="number" formControlName="price" />
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field>
+          <mat-label>Point</mat-label>
+          <mat-select formControlName="location" name="location">
+            <mat-option
+              *ngFor="let location of locations"
+              [value]="location.value"
+            >
+              {{ location.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field>
+          <mat-label>Autocomplete this device</mat-label>
+          <mat-select formControlName="autocomplete" name="autocomplete">
+            <mat-option *ngFor="let device of devices" [value]="device.value">
+              {{ device.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button type="button" mat-button mat-dialog-close>Cancel</button>
+    <button
+      type="submit"
+      mat-raised-button
+      [mat-dialog-close]="true"
+      cdkFocusInitial
+      [color]="addDevicesForm.valid ? 'primary' : ''"
+    >
+      Add
+    </button>
+  </mat-dialog-actions>
+</form>
